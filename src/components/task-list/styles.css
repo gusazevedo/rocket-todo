@@ -1,0 +1,121 @@
+.task-list-container {
+    max-height: calc(100vh - 300px);
+    overflow-y: auto;
+
+    scrollbar-width: thin;
+    scrollbar-color: #797979 transparent;
+}
+
+.task-list-container::-webkit-scrollbar {
+    width: 6px;
+    background: transparent;
+}
+
+.task-list-container::-webkit-scrollbar-thumb {
+    background: #797979;
+    border-radius: 8px;
+}
+
+.task-list-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.task-list-container li {
+    border: 2px solid #7a7a7a;
+    padding: 0.8rem 1rem;
+    border-radius: 1rem;
+}
+
+.task-list-container li span {
+    font-weight: 600;
+    color: #505050;
+    line-height: normal;
+}
+
+.task-list-container li+li {
+    margin-top: 1rem;
+}
+
+.task-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.task-list-item span {
+    flex: 1;
+}
+
+.task-list-item button,
+.task-list-item button div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.task-list-item button div svg {
+    transition: fill 0.2s ease-in-out;
+}
+
+.task-list-item button div:hover svg {
+    fill: tomato;
+}
+
+/* Checkbox styles */
+.task-list-item .custom-checkbox {
+    position: relative;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+}
+
+.task-list-item .custom-checkbox input[type="checkbox"] {
+    opacity: 0;
+    width: 25px;
+    height: 25px;
+    margin: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    cursor: pointer;
+}
+
+.task-list-item .custom-checkbox span {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 25px;
+    height: 25px;
+    background: #f4f4f4;
+    border: 2px solid #505050;
+    border-radius: 6px;
+    transition: border-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.task-list-item .custom-checkbox input[type="checkbox"]:checked + span {
+    background: #4caf50;
+    border-color: #4caf50;
+}
+
+.task-list-item .custom-checkbox span::after {
+    content: '';
+    display: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    background: #f4f4f4;
+}
+
+.task-list-item .custom-checkbox input[type="checkbox"]:checked + span::after {
+    display: block;
+    background: #f4f4f4;
+}

@@ -15,7 +15,7 @@
 .todo-input-container input {
     border-top: 0;
     border-right: 0;
-    border-bottom: 1px;
+    border-bottom: 2px;
     border-left: 0;
     border-style: solid;
     border-color: #505050;
@@ -25,7 +25,8 @@
 
     font-size: 1rem;
     color: #505050;
-    font-family: 'Roboto', sans-serif
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
 }
 
 .todo-input-container button {
