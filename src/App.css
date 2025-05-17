@@ -1,0 +1,11 @@
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.main-todo-cotainer {
+    max-width: 460px;
+    width: 100%;
+}
