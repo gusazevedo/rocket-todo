@@ -1,9 +1,9 @@
 import { XIcon } from "@phosphor-icons/react";
-import type { ITaskList } from "../../interfaces/task-interface";
 
 import './styles.css';
+import type { ITaskList } from "../../interfaces/task-interface";
 
-export default function TaskList({ list }: ITaskList) {
+export default function TaskList({list}: ITaskList) {
   return (
     <ul className="task-list-container">
       {list.map((task) => (
@@ -12,7 +12,7 @@ export default function TaskList({ list }: ITaskList) {
             <input type="checkbox" />
             <span></span>
           </label>
-          <span>{task.description}</span>
+          <span>{task.taskTitle}</span>
           <button>
             <div>
               <XIcon
