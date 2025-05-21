@@ -48,7 +48,7 @@
     justify-content: center;
     height: fit-content;
     width: fit-content;
-    transition: all 0.4s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 .todo-input-container button:hover .icon-container {

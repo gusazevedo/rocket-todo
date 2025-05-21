@@ -3,7 +3,3 @@ export interface ITask {
   id: string;
   isCompleted: boolean;
 }
-
-export interface ITaskList {
-  list: ITask[] | [];
-}
