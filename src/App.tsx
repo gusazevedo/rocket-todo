@@ -1,12 +1,18 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import NewTaskForm from './components/new-task-form/new-task-form';
 import TaskList from './components/task-list/task-list';
 import type { ITask } from './interfaces/task-interface';
-
 import './App.css'
 
 export default function App() {
-  const [taskList, setTaskList] = useState<ITask[]>([]);
+  const [taskList, setTaskList] = useState<ITask[]>(() => {
+    const store = localStorage.getItem('@rocketTasks');
+    return store ? JSON.parse(store) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('@rocketTasks', JSON.stringify(taskList));
+  }, [taskList]);
 
   const handleAddTask = useCallback((taskTitle: string) => {
     const newTask = {
@@ -15,9 +21,7 @@ export default function App() {
       isCompleted: false,
     };
 
-    console.log('item', newTask);
-
-    setTaskList((prev) => [...prev, newTask]);
+    setTaskList((prev) => [newTask, ...prev]);
   }, []);
 
   return (
