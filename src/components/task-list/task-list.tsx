@@ -1,9 +1,14 @@
 import { XIcon } from "@phosphor-icons/react";
 
 import './styles.css';
-import type { ITaskList } from "../../interfaces/task-interface";
+import type { ITask, ITaskList } from "../../interfaces/task-interface";
 
-export default function TaskList({list}: ITaskList) {
+interface ITaskListComponent {
+  list: ITaskList;
+  handleRemoveTask: (task: ITask) => void;
+}
+
+export default function TaskList({list, handleRemoveTask}: ITaskListComponent) {
   return (
     <ul className="task-list-container">
       {list.map((task) => (
@@ -13,7 +18,7 @@ export default function TaskList({list}: ITaskList) {
             <span></span>
           </label>
           <span>{task.taskTitle}</span>
-          <button>
+          <button onClick={() => handleRemoveTask(task)}>
             <div>
               <XIcon
                 size={20}

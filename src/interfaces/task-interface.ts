@@ -4,9 +4,7 @@ export interface ITask {
   isCompleted: boolean;
 }
 
-export interface ITaskList {
-  list: ITask[] | []
-}
+export type ITaskList = ITask[];
 
 export interface INewTaskForm {
   handleAddTask: (taskTitle: string) => void;
