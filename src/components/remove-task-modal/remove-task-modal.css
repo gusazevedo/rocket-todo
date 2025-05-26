@@ -1,0 +1,49 @@
+.remove-task-modal {
+    width: 90%;
+    max-width: 400px;
+}
+
+.remove-task-modal .inner-class {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.remove-task-modal .inner-class p {
+    font-size: 20px;
+    text-align: center;
+    padding: 0 2rem;
+}
+
+.remove-task-modal .inner-class .button-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.remove-task-modal .inner-class .button-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap-reverse;
+    gap: 1rem;
+}
+
+.remove-task-modal .inner-class button {
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    flex: 1;
+    cursor: pointer;
+}
+
+.remove-task-modal .inner-class button:first-child {
+    border: 2px solid tomato;
+    color: tomato;
+    transition: all 0.2s ease-in-out;
+}
+
+.remove-task-modal .inner-class button:first-child:hover {
+    background-color: tomato;
+    color: #fafafa;
+}

@@ -34,7 +34,7 @@ export default function CustomModal({
         <div className="custom-modal-header">
           {modalTitle && <h1>{modalTitle}</h1>}
           <button type="button" onClick={closeModal}>
-            <XIcon size={18} color="#f4f4f4" />
+            <XIcon size={18} color="#f4f4f4"  weight="bold"/>
           </button>
         </div>
         <div className="custom-modal-content">
