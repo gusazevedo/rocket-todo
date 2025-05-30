@@ -45,11 +45,27 @@ export default function App() {
     setTaskList(newList);
   }, [isOpen, taskList]);
 
+  const handleCompleteTask = useCallback((task: ITask) => {
+    const list = taskList.map((item) => {
+      if (item.id === task.id) {
+        return {...item, isCompleted: !task.isCompleted};
+      }
+
+      return item;
+    })
+
+    setTaskList(list);
+  }, [taskList]);
+
   return (
     <main>
       <div className='main-todo-container'>
         <NewTaskForm handleAddTask={handleAddTask} />
-        <TaskList list={taskList} handleRemoveTask={handleRequestRemove} />
+        <TaskList
+          list={taskList}
+          handleRemoveTask={handleRequestRemove}
+          handleCompleteTask={handleCompleteTask}
+        />
         <RemoveTaskModal
           handleCloseModal={handleCloseModal}
           handleRemoveTask={handleRemoveTask}

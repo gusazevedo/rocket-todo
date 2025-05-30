@@ -32,6 +32,11 @@
     line-height: normal;
 }
 
+.task-list-container li span.task-complete {
+    color: #50505080;
+    text-decoration-line: line-through;
+}
+
 .task-list-container li+li {
     margin-top: 1rem;
 }
@@ -73,6 +78,7 @@
     width: 25px;
     height: 25px;
     display: inline-block;
+    cursor: pointer;
 }
 
 .task-list-item .custom-checkbox input[type="checkbox"] {
