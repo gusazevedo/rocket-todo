@@ -1,25 +1,27 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import NewTaskForm from './components/new-task-form/new-task-form';
 import TaskList from './components/task-list/task-list';
-import type { ITask, ITaskList } from './interfaces/task-interface';
+import type { ITask } from './interfaces/task-interface';
 import RemoveTaskModal from './components/remove-task-modal/remove-task-modal';
 import './App.css';
-
-interface IModalData {
-  isOpen: boolean;
-  selectedTask: ITask | null;
-}
+import { useTaskStore } from './store/task-store';
 
 export default function App() {
-  const [isOpen, setIsOpen] = useState<IModalData>({isOpen: false, selectedTask: null});
-  const [taskList, setTaskList] = useState<ITaskList>(() => {
-    const store = localStorage.getItem('@rocketTasks');
-    return store ? JSON.parse(store) : [];
-  });
+  const {
+    taskList,
+    createTask,
+    deleteTask,
+    toggleTask,
+    updateTaskList,
+    isModalOpen,
+    openModal,
+    closeModal
+  } = useTaskStore();
 
   useEffect(() => {
-    localStorage.setItem('@rocketTasks', JSON.stringify(taskList));
-  }, [taskList]);
+    const store = localStorage.getItem('@rocketTasks') || '[]';
+    updateTaskList(JSON.parse(store))
+  }, []);
 
   const handleAddTask = useCallback((taskTitle: string) => {
     const newTask = {
@@ -28,34 +30,16 @@ export default function App() {
       isCompleted: false,
     };
 
-    setTaskList((prev) => [newTask, ...prev]);
+    createTask(newTask);
   }, []);
 
   const handleRequestRemove = useCallback((task: ITask) => {
-    setIsOpen({isOpen: true, selectedTask: task});
+    openModal(task)
   }, []);
-
-  const handleCloseModal = useCallback(() => {
-    setIsOpen({isOpen: false, selectedTask: null});
-  }, []);
-
-  const handleRemoveTask = useCallback(() => {
-    const newList = taskList.filter((i) => i.id !== isOpen.selectedTask?.id);
-    setIsOpen({isOpen: false, selectedTask: null});
-    setTaskList(newList);
-  }, [isOpen, taskList]);
 
   const handleCompleteTask = useCallback((task: ITask) => {
-    const list = taskList.map((item) => {
-      if (item.id === task.id) {
-        return {...item, isCompleted: !task.isCompleted};
-      }
-
-      return item;
-    })
-
-    setTaskList(list);
-  }, [taskList]);
+    toggleTask(task);
+  }, []);
 
   return (
     <main>
@@ -67,9 +51,9 @@ export default function App() {
           handleCompleteTask={handleCompleteTask}
         />
         <RemoveTaskModal
-          handleCloseModal={handleCloseModal}
-          handleRemoveTask={handleRemoveTask}
-          isOpen={isOpen}
+          handleCloseModal={closeModal}
+          handleRemoveTask={deleteTask}
+          isOpen={isModalOpen}
         />
       </div>
     </main>

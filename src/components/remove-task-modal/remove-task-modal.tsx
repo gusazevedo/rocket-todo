@@ -1,10 +1,9 @@
-import type { ITask } from "../../interfaces/task-interface";
 import CustomModal from "../custom-modal/custom-modal";
 
 import './remove-task-modal.css';
 
 interface IRemoveTaskModal {
-  isOpen: { isOpen: boolean, selectedTask: ITask | null };
+  isOpen: boolean;
   handleCloseModal: () => void;
   handleRemoveTask: () => void;
 }
@@ -16,7 +15,7 @@ export default function RemoveTaskModal({
 }: IRemoveTaskModal) {
   return (
     <CustomModal
-      isOpen={isOpen.isOpen}
+      isOpen={isOpen}
       closeModal={handleCloseModal}
       modalTitle='Delete task'
       className='remove-task-modal'
