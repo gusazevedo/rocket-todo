@@ -25,6 +25,7 @@ function handleCreateTask(task: ITask, state: State) {
 function handleDeleteTask(state: State) {
   const selectedTask = state.selectedTask;
   const list = state.taskList.filter((t) => t.id !== selectedTask?.id);
+  localStorage.setItem('@rocketTasks', JSON.stringify({ taskList: list }));
   return { taskList: list, selectedTask: undefined, isModalOpen: false };
 }
 
@@ -52,6 +53,6 @@ export const useTaskStore = create<State & Actions>((set) => ({
   deleteTask: () => set((state) => handleDeleteTask(state)),
   toggleTask: (task: ITask) => set((state) => handleToggleTask(task, state)),
   updateTaskList: (taskList: ITaskList) => set(() => handleUpdateTaskList(taskList)),
-  openModal: (task: ITask) => set(() => ({isModalOpen: true, selectedTask: task})),
-  closeModal: () => set(() => ({isModalOpen: false, selectedTask: undefined}))
+  openModal: (task: ITask) => set(() => ({ isModalOpen: true, selectedTask: task })),
+  closeModal: () => set(() => ({ isModalOpen: false, selectedTask: undefined }))
 }));
